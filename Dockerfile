@@ -7,6 +7,7 @@ ENV SCALA_VARIANTS 2.10.6 2.11.8 2.12.0-M4
 
 # install base utilities
 RUN \
+    apt-get clean && \
     apt-get update && \
     apt-get install -y \
         build-essential \
