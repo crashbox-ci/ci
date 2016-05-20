@@ -5,9 +5,8 @@ MAINTAINER Jakob Odersky <jakob@odersky.com>
 ENV SBT_VARIANTS 0.13.11
 ENV SCALA_VARIANTS 2.10.6 2.11.8 2.12.0-M4
 
-# install base utilities
+# install base utilities & sbt
 RUN \
-    apt-get clean && \
     apt-get update && \
     apt-get install -y \
         build-essential \
@@ -23,17 +22,11 @@ RUN \
 	python \
 	apt-transport-https \
 	gnupg2 \
-	nano
-
-# install sbt
-RUN \
+	nano && \
     echo "deb https://dl.bintray.com/sbt/debian /" > /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823 && \
     apt-get update && \
-    apt-get install -y sbt
-
-# clean environment
-RUN \
+    apt-get install -y sbt && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
