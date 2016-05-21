@@ -30,10 +30,6 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# setup and switch to ci user
-RUN adduser --system --group ci
-USER ci
-
 # initialize sbt
 RUN \
     mkdir /tmp/sbt && \

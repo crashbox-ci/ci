@@ -2,4 +2,4 @@
 
 DIR=$(dirname $(readlink -f $0))
 
-docker build -t jodersky/ci:0.1 "$DIR"
+docker build -t jodersky/ci:0.2 "$DIR"
