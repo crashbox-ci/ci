@@ -2,8 +2,8 @@ FROM debian:jessie-backports
 
 MAINTAINER Jakob Odersky <jakob@odersky.com>
 
-ENV SBT_VARIANTS 0.13.11
-ENV SCALA_VARIANTS 2.10.6 2.11.8 2.12.0-M4
+ENV SBT_VERSIONS 0.13.11 0.13.12
+ENV SCALA_VERSIONS 2.10.6 2.11.8 2.12.0-M5
 
 # install base utilities & sbt
 RUN \
@@ -35,10 +35,10 @@ RUN \
     cd /tmp/sbt && \
     mkdir -p project src/main/scala && \
     touch src/main/scala/scratch.scala && \
-    for SBT_VERSION in $SBT_VARIANTS ; do \
+    for SBT_VERSION in $SBT_VERSIONS ; do \
     	echo "sbt.version=$SBT_VERSION" > project/build.properties && \
-	for SCALA_VERSION in $SCALA_VARIANTS ; do \
-    	    sbt ++$SCALA_VERSION clean updateClassifiers compile ; \
+	for SCALA_VERSION in $SCALA_VERSIONS ; do \
+    	    sbt ++$SCALA_VERSION clean update updateClassifiers compile ; \
     	done ; \
     done && \
     rm -rf /tmp/sbt
